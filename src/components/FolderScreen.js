@@ -8,7 +8,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import OpenFile from 'react-native-doc-viewer';
-import FileViewer from 'react-native-file-viewer';
 
 const FolderScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -18,19 +17,11 @@ const FolderScreen = ({navigation, route}) => {
 
   useEffect(() => {
       dispatch({type: 'LOAD_FOLDER', payload: {id: 1}})
-      const path = 'https://cdn.ecogiong.com:4443/bagang/banner/example.pdf'
-      FileViewer.open(path)
-      .then(() => {
-        console.log('success')
-      })
-      .catch(error => {
-        console.log('error')
-      });
   }, []);
 
   const findFormatFile = (name) => {
-    indexOfDot = name.lastIndexOf('.');
-    formatFile = name.slice(indexOfDot + 1);
+    var indexOfDot = name.lastIndexOf('.');
+    var formatFile = name.slice(indexOfDot + 1);
     if(formatFile === 'pdf'){
       return 'pdf';
     }else if(formatFile === 'xlsx' || formatFile === 'xlx' || formatFile === 'xlsm') {
